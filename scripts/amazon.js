@@ -7,6 +7,8 @@
 
 //we are adding html in productsHTML EACH TIME we go through the loop
 
+import {cart} from '../data/cart.js';//(..)means we get out of the scripts folder and then we get inside data/cart
+
 let productsHTML = '';
 
 products.forEach((product) => {
