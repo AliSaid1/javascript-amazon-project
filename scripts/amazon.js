@@ -7,7 +7,7 @@
 
 //we are adding html in productsHTML EACH TIME we go through the loop
 
-import {cart} from '../data/cart.js';//(..)means we get out of the scripts folder, and then we get inside data/cart
+import {cart, addToCart} from '../data/cart.js';//(..)means we get out of the scripts folder, and then we get inside data/cart
 import {products} from '../data/products.js';
 
 let productsHTML = '';
@@ -68,28 +68,6 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid')
   .innerHTML = productsHTML;//we changed the whole grid into dynamic HTML
-
-
-
-function addToCart(productId) {
-  let matchingItem;
-//loop through the cart array (Each item is each obj. in cart). if both id are true then both objects are matching. matchingItem is true then the quantity will be +1
-  cart.forEach((cartItem) => {
-    if (productId === cartItem.productId) {
-      matchingItem = cartItem;
-    }
-  });
-
-  if (matchingItem) {
-    matchingItem.quantity += 1;
-  } else {
-    cart.push({//adds a new object to the cart array
-      productId: productId,
-      quantity: 1
-    })
-  }
-}
-
 
 function updateCartQuantity() {
   let cartQuantity = 0;
