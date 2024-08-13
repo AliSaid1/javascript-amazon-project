@@ -10,7 +10,7 @@
 import {cart, addToCart} from '../data/cart.js';//(..)means we get out of the scripts folder, and then we get inside data/cart
 import {products} from '../data/products.js';
 
-let productsHTML = '';
+let productsHTML = '';//Starting with an empty string ensures that the accumulation process starts from a known, empty state.If you leave productsHTML uninitialized it would be undefined by default. Could potentially cause errors
 
 products.forEach((product) => {
   productsHTML += `
