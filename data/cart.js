@@ -2,7 +2,9 @@
 //Helps us avoid naming conflicts
 //we don't have to worry about the order of our script tags/files in HTML File
 //export const cart = []; //this variable can be used outside this file
-export const cart = [{
+import {products} from "./products";
+
+export let cart = [{
   productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
   quantity: 2
 }, {//NOTE IMP: why we don't give more data like img, price etc.? because with specifying the ProductID it's going to search for this products data in product.js so we don't have to do it twice. Technique called Normalizing the Data
@@ -27,4 +29,15 @@ export function addToCart(productId) {
       quantity: 1
     })
   }
+}
+
+export function removeFromCart(productId) {
+  const newCart = [];
+
+  cart.forEach((cartItem) => {
+    if (cartItem.productId !== productId) {
+      newCart.push(cartItem);
+    }
+  });
+  cart = newCart;
 }
