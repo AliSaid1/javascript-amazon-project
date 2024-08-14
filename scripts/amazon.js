@@ -9,6 +9,7 @@
 
 import {cart, addToCart} from '../data/cart.js';//(..)means we get out of the scripts folder, and then we get inside data/cart
 import {products} from '../data/products.js';
+import {formatCurrency} from "./utils/money.js";
 
 let productsHTML = '';//Starting with an empty string ensures that the accumulation process starts from a known, empty state.If you leave productsHTML uninitialized it would be undefined by default. Could potentially cause errors
 
@@ -33,7 +34,7 @@ products.forEach((product) => {
       </div>
 
       <div class="product-price">
-        $${(product.priceCents / 100).toFixed(2)} <!-- convert cents back to dollars & toFixed to force 2 Decimal Digits (10.9 to 10.90)-->
+        $${formatCurrency(product.priceCents)} <!-- convert cents back to dollars & toFixed to force 2 Decimal Digits (10.9 to 10.90)-->
       </div>
 
       <div class="product-quantity-container">
