@@ -2,8 +2,9 @@
 //Helps us avoid naming conflicts
 //we don't have to worry about the order of our script tags/files in HTML File
 //export const cart = []; //this variable can be used outside this file
-import {products} from "./products";
 
+
+import {products} from './products.js';
 export let cart = [{
   productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
   quantity: 2
