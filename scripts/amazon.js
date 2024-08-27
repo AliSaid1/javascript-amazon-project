@@ -7,7 +7,7 @@
 
 //we are adding html in productsHTML EACH TIME we go through the loop
 
-import {cart, addToCart} from '../data/cart.js';//(..)means we get out of the scripts folder, and then we get inside data/cart
+import {cart, addToCart, calculateCartQuantity} from '../data/cart.js';//(..)means we get out of the scripts folder, and then we get inside data/cart
 import {products} from '../data/products.js';
 import {formatCurrency} from "./utils/money.js";
 
@@ -71,15 +71,13 @@ document.querySelector('.js-products-grid')
   .innerHTML = productsHTML;//we changed the whole grid into dynamic HTML
 
 function updateCartQuantity() {
-  let cartQuantity = 0;
-  //we take the quantity of each item from the cart and add it into the variable cartQuantity.
-  cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
-  });
+const cartQuantity = calculateCartQuantity();
 
   document.querySelector('.js-cart-quantity')
     .innerHTML = cartQuantity;// When cartQuantity is equal to 5 the selected HTML element with the class js-cart-quantity will be replaced with the number 5
 }
+
+updateCartQuantity();//updating the cart (top right) on reloading the page
 
 //we create a list of Add to Cart
 document.querySelectorAll('.js-add-to-cart')

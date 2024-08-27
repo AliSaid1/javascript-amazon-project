@@ -57,3 +57,11 @@ export function removeFromCart(productId) {
   cart = newCart;//we change the cart into newCart
   saveToStorage();//whenever we update the cart we need to save it to localStorage
 }
+export function calculateCartQuantity() {
+  let cartQuantity = 0;
+  //we take the quantity of each item from the cart and add it into the variable cartQuantity.
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  return cartQuantity;
+}
