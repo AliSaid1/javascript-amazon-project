@@ -209,3 +209,36 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+.quantity-input {
+  width: 30px;
+  display: none;
+}
+.save-quantity-link {
+  display: none; /* none will hide the save button*/
+}
+/*
+NOTE:.is-editing-quantity is the class of the parent element.
+(.quantity-input) is the class of the child element inside that parent.
+
+.is-editing-quantity .quantity-input {
+display: initial;
+initial will display the input after clicking update
+}
+.is-editing-quantity .save-quantity-link {
+  display: initial;
+  initial will display the save button after clicking update
+}
+*/
+.is-editing-quantity {
+  .quantity-input, .save-quantity-link {
+    display: initial;
+  }
+}
+/*
+hiding the update button and the quantity AFTER clicking update (At Editing State)
+*/
+.is-editing-quantity {
+  .quantity-label, .update-quantity-link {
+    display: none;
+  }
+}

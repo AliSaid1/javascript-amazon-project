@@ -37,8 +37,13 @@ cart.forEach((cartItem) => {
                   <span>
                     Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary js-update-link"
+                  data-product-id="${matchingProduct.id}">
                     Update
+                  </span>
+                  <input class="quantity-input">
+                  <span class="save-quantity-link link-primary">
+                  Save
                   </span>
                   <span class="delete-quantity-link link-primary
                    js-delete-link" data-product-id="${matchingProduct.id}">
@@ -120,3 +125,26 @@ function updateCartQuantity() {
     .innerHTML = `${cartQuantity} items`;
 }
 updateCartQuantity();
+/*
+updating the update button:
+1.after clicking the update button, we get the id then Use this productId to
+ construct a dynamic class name that uniquely identifies the container for that specific product.ex: .js-cart-item-container-123
+ This will find the <div class="js-cart-item-container-123"> element
+2.Once the correct container is identified, the next step is to modify its appearance or behavior by adding a class to it using classList.add.
+ It’s an easy way to manipulate the class attribute of an element without affecting other classes that might already be applied to it.
+ What does classList.add('is-editing-quantity') do?
+ When you call container.classList.add('is-editing-quantity'), you’re adding the is-editing-quantity class to the selected container element.
+ This class can be used to trigger specific CSS styles or JavaScript behaviors.
+ */
+
+
+document.querySelectorAll('.js-update-link')
+  .forEach((link) => {
+  link.addEventListener('click', () => {
+    const productId = link.dataset.productId;
+
+    const container =
+      document.querySelector(`.js-cart-item-container-${productId}`);
+    container.classList.add('is-editing-quantity');
+  });
+});
