@@ -31,7 +31,7 @@ export function addToCart(productId) {
     });
   }
 }
-
+//Each time we select a product it will be automatically removed because we replace old cart with new cart that have unselected products
 export function removeFromCart(productId) {
   const newCart = [];
 //we add each item to the new cart
