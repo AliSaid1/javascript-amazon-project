@@ -27,17 +27,17 @@ export function addToCart(productId) {
     cart.push({//adds a new object to the cart array
       productId: productId,
       quantity: 1
-    })
+    });
   }
 }
 
 export function removeFromCart(productId) {
   const newCart = [];
-
+//we add each item to the new cart
   cart.forEach((cartItem) => {
     if (cartItem.productId !== productId) {
       newCart.push(cartItem);
     }
   });
-  cart = newCart;
+  cart = newCart;//we change the cart into newCart
 }
