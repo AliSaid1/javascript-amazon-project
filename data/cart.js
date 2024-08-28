@@ -4,8 +4,6 @@
 //export const cart = []; //this variable can be used outside this file
 
 
-import {products} from './products.js';
-
 //1.We need to get the cart from the localStorage instead of a default value
 //2.localStorage.getItem('cart') will take one String, which the name of what we saved in the storage
 //3.JSON.parse() to convert the string back to an array
@@ -26,7 +24,23 @@ function saveToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));//localStorage only saves Strings that's why we converted into JSON.stringify(cart)
 }
 
+function messageAdded(productId) {
+  //controlling the checkmark on clicking a specific prod.
+  const addedMessage =
+    document.querySelector(`.js-added-to-cart-${productId}`);
+  addedMessage.classList.add('added-to-cart-visible');//added a class to the message
 
+  setTimeout(() => {
+    addedMessage.classList.remove('added-to-cart-visible');
+  }, 2000);//removing the class after 2 seconds (to hide back the message)
+}
+
+function selectingQuantity(productId) {
+  const quantitySelector =//for selecting a quantity number from the select bar Element
+    document.querySelector(`.js-quantity-selector-${productId}`);
+  //return quantity
+  return Number(quantitySelector.value);//convert from String to number
+}
 
 export function addToCart(productId) {
   let matchingItem;
@@ -37,9 +51,7 @@ export function addToCart(productId) {
     }
   });
 
-  const quantitySelector =
-    document.querySelector(`.js-quantity-selector-${productId}`);
-  const quantity = Number(quantitySelector.value);
+  const quantity = selectingQuantity(productId);
 
   if (matchingItem) {
     matchingItem.quantity += quantity;
@@ -49,8 +61,11 @@ export function addToCart(productId) {
       quantity: quantity
     });
   }
+  messageAdded(productId);
+
   saveToStorage();//whenever we update the cart we need to save it to localStorage
 }
+
 //Each time we select a product it will be automatically removed because we replace old cart with new cart that have unselected products
 export function removeFromCart(productId) {
   const newCart = [];
