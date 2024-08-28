@@ -26,6 +26,8 @@ function saveToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));//localStorage only saves Strings that's why we converted into JSON.stringify(cart)
 }
 
+
+
 export function addToCart(productId) {
   let matchingItem;
 //loop through the cart array (Each item is each obj. in cart). if both id are true then both objects are matching. matchingItem is true then the quantity will be +1
@@ -35,12 +37,16 @@ export function addToCart(productId) {
     }
   });
 
+  const quantitySelector =
+    document.querySelector(`.js-quantity-selector-${productId}`);
+  const quantity = Number(quantitySelector.value);
+
   if (matchingItem) {
-    matchingItem.quantity += 1;
+    matchingItem.quantity += quantity;
   } else {
     cart.push({//adds a new object to the cart array
       productId: productId,
-      quantity: 1
+      quantity: quantity
     });
   }
   saveToStorage();//whenever we update the cart we need to save it to localStorage
