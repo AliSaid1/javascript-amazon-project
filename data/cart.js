@@ -13,10 +13,12 @@ export let cart = JSON.parse(localStorage.getItem('cart'));
 if (!cart) {
   cart = [{
     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    quantity: 2
+    quantity: 2,
+    deliveryOptionId: '1'
   }, {//NOTE IMP: why we don't give more data like img, price etc.? because with specifying the ProductID it's going to search for this products data in product.js so we don't have to do it twice.This Technique called Normalizing the Data
     productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-    quantity: 1
+    quantity: 1,
+    deliveryOptionId: '2'
   }];
 }
 
@@ -58,7 +60,8 @@ export function addToCart(productId) {
   } else {
     cart.push({//adds a new object to the cart array
       productId: productId,
-      quantity: quantity
+      quantity: quantity,
+      deliveryOptionId: '1'
     });
   }
   messageAdded(productId);
